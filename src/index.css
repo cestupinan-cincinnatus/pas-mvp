@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: #F8FAFC;
+  color: #0F172A;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Botones y campos grandes para uso bajo estrés */
+@layer components {
+  .btn {
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl px-5 py-3 text-base font-bold transition active:scale-[0.98] focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-300 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primario { @apply btn bg-cian text-white hover:brightness-110; }
+  .btn-oscuro { @apply btn bg-pizarra text-humo hover:bg-pizarra-700; }
+  .btn-claro { @apply btn bg-white text-pizarra ring-2 ring-slate-300 hover:bg-slate-100; }
+  .campo {
+    @apply min-h-[48px] w-full rounded-xl border-2 border-slate-300 bg-white px-4 py-3 text-base text-pizarra placeholder:text-slate-400 focus:border-cian focus:outline-none focus:ring-4 focus:ring-cyan-200;
+  }
+  .etiqueta { @apply mb-1.5 block text-sm font-bold text-pizarra; }
+}
+
+/* Pines del mapa */
+.pas-pin {
+  width: 26px; height: 26px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+  border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,.45);
+}
+.pas-pin-pulso { animation: pas-pulso 1.6s ease-out infinite; }
+@keyframes pas-pulso {
+  0% { box-shadow: 0 0 0 0 rgba(220,38,38,.65), 0 2px 8px rgba(0,0,0,.45); }
+  100% { box-shadow: 0 0 0 16px rgba(220,38,38,0), 0 2px 8px rgba(0,0,0,.45); }
+}
+.pas-albergue {
+  width: 28px; height: 28px; border-radius: 8px; background: #0284C7; color: #fff; border: 3px solid #fff;
+  display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 15px; box-shadow: 0 2px 8px rgba(0,0,0,.4);
+}
+.pas-tooltip { font-weight: 700; font-size: 13px; }
+
+/* Leaflet: atribución discreta */
+.leaflet-control-attribution { font-size: 10px !important; background: rgba(15,23,42,.78) !important; color: #E2E8F0 !important; }
+.leaflet-control-attribution a { color: #7DD3FC !important; }
+.leaflet-container { font-family: inherit; }
+
+/* Scroll del panel de triaje */
+.scroll-fino::-webkit-scrollbar { width: 8px; }
+.scroll-fino::-webkit-scrollbar-thumb { background: #475569; border-radius: 8px; }
